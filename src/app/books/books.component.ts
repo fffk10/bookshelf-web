@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Book } from './book';
-import { BOOKS } from '../mock-books';
+
+import { Book } from '../book';
+import { BookService } from '../book.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-books',
@@ -8,23 +10,25 @@ import { BOOKS } from '../mock-books';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
-  book: Book = {
-    id: 1,
-    title: '吾輩は猫である',
-    point: 5
-  }
 
-  // 本のモック
-  books = BOOKS;
+  books!: Book[];
 
   selectedBook!: Book;
   
-  constructor() { }
+  constructor(private bookService: BookService,
+    private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.getBookS();
   }
 
   onSelect(book: Book): void {
     this.selectedBook = book;
+    this.messageService.add(`BooksComponent: Seleced book id=${book.id}`);
+  }
+
+  getBookS(): void {
+    this.bookService.getBooks()
+    .subscribe(books => this.books = books);
   }
 }

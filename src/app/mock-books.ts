@@ -1,4 +1,4 @@
-import { Book } from './books/book';
+import { Book } from './book';
 
 export const BOOKS: Book[] = [
     { id: 11, title: '吾輩は猫である', point: 1},

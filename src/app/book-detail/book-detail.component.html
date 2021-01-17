@@ -1,1 +1,10 @@
-<p>book-detail works!</p>
+<div *ngIf="book">
+
+    <h2>{{book.title}} Details</h2>
+    <div><span>id: </span>{{book.id}}</div>
+    <div>
+        <label>title:
+            <input [(ngModel)]="book.title" placceholder="title"/>
+        </label>
+    </div>
+</div>

@@ -6,12 +6,4 @@
     </li>
 </ul>
 
-<div *ngIf="selectedBook">
-    <h2>{{selectedBook.title}} Details</h2>
-    <div><span>id: </span>{{selectedBook.id}}</div>
-    <div>
-        <label>title:
-            <input [(ngModel)]="selectedBook.title" placeholder="title"/>
-        </label>
-    </div>
-</div>
+<app-book-detail [book]="selectedBook"></app-book-detail>
