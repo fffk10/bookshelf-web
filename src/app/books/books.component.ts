@@ -12,22 +12,14 @@ import { MessageService } from '../message.service';
 export class BooksComponent implements OnInit {
 
   books!: Book[];
-
-  selectedBook!: Book;
   
-  constructor(private bookService: BookService,
-    private messageService: MessageService) { }
+  constructor(private bookService: BookService) { }
 
   ngOnInit(): void {
-    this.getBookS();
+    this.getBooks();
   }
 
-  onSelect(book: Book): void {
-    this.selectedBook = book;
-    this.messageService.add(`BooksComponent: Seleced book id=${book.id}`);
-  }
-
-  getBookS(): void {
+  getBooks(): void {
     this.bookService.getBooks()
     .subscribe(books => this.books = books);
   }
