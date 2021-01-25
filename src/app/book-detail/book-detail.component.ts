@@ -4,11 +4,12 @@ import { Location } from '@angular/common';
 
 import { Book } from '../book';
 import { BookService } from '../book.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-book-detail',
   templateUrl: './book-detail.component.html',
-  styleUrls: [ './book-detail.component.css' ]
+  styleUrls: ['./book-detail.component.css']
 })
 export class BookDetailComponent implements OnInit {
   book!: Book | undefined;
@@ -17,7 +18,7 @@ export class BookDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private bookService: BookService,
     private location: Location
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getBook();
@@ -31,5 +32,10 @@ export class BookDetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  save(): void {
+    this.bookService.updateBook(this.book)
+      .subscribe(() => this.goBack());
   }
 }
