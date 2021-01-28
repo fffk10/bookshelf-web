@@ -31,6 +31,19 @@ export class BookService {
       )
   }
 
+  /** IDから本を取得、idが見つからない場合は`undefined`を返す */
+  getBookNo404<Data>(id: number): Observable<Book> {
+    const url = `${this.booksUrl}/?id=${id}`;
+    return this.http.get<Book[]>(url)
+    .pipe(
+      map(books => books[0]),
+      tap(h => {
+        const outcome = h ? `fetched` : `did not find`;
+        this.log(`${outcome} book id=${id}`);
+      })
+    )
+  }
+
   /** IDから本を取得、見つからない場合は404を返す */
   getBook(id: number): Observable<Book | undefined> {
     const url = `${this.booksUrl}/${id}`;

@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
 import {
-   debounceTime, distinctUntilChanged, switchMap
- } from 'rxjs/operators';
+  debounceTime, distinctUntilChanged, switchMap
+} from 'rxjs/operators';
 
 import { Book } from '../book';
 import { BookService } from '../book.service';
@@ -12,13 +12,13 @@ import { BookService } from '../book.service';
 @Component({
   selector: 'app-book-search',
   templateUrl: './book-search.component.html',
-  styleUrls: [ './book-search.component.css' ]
+  styleUrls: ['./book-search.component.css']
 })
 export class BookSearchComponent implements OnInit {
-  books$!: Observable<Book[] | unknown>;
+  books$!: Observable<Book[]>;
   private searchTerms = new Subject<string>();
 
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService) { }
 
   // 検索語をobservableストリームにpushする
   search(term: string): void {
